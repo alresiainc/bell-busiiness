@@ -12,6 +12,12 @@ body {
   font-size: 1.3714285714285714rem;
   line-height: 1.5;
   background-color: #fff;
+
+  background-image: url(/bg-image.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: auto;
 }
 
 body.page {
@@ -19,8 +25,8 @@ body.page {
 }
 .header {
   color: #fff;
-  padding: 0px 45px;
-  min-height: 65px;
+  padding: 0px 10px;
+  /* min-height: 35px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,19 +82,44 @@ body.page {
   color: #ffffff;
   margin: 0;
   font-weight: 900;
-  line-height: 30px;
 }
 
-.header .site-title-sub {
+.header .site-sub-title-container .site-title-sub {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #181818;
   font-size: 24px;
   color: #ffffff;
   margin: 0;
+  line-height: 19px;
+  padding-left: 11px;
+  font-size: 17px;
 }
-.content {
-  background: #f2f2f2;
-  border: 2px solid #d6d2d2;
-  padding: 20px;
-  margin: 15px;
+.form-container {
+  box-sizing: border-box;
+  width: 390px;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.12);
+}
+.form-body {
+  padding: 45px;
+  padding-bottom: 0px;
+}
+.form-footer {
+  max-width: 100%;
+  font-weight: 700;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 20px 45px;
+  background-color: #f4f4f4;
+  border-radius: inherit;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-footer a {
+  text-decoration: none;
 }
 
 .content .card .card-header {
@@ -105,28 +136,29 @@ body.page {
   /* margin-bottom: 5px; */
   font-weight: 700;
   font-size: 15px;
-  font-weight: normal;
+  font-weight: 700;
 }
 .form-control {
-  background-color: #f4f4f4;
-  border: solid 2px #8d8d8d;
+  background-color: #ffffff;
+  border: solid 1px #c5c0c0;
   font-size: 16px;
   line-height: 14px;
-  width: 304px;
+  width: 100%;
   height: 44px;
   border-radius: 0;
 }
 
-.form-btn {
-  border-radius: 5px;
-  background-color: #0066a4;
+.form-btn,
+.form-btn:hover {
+  border-radius: 25px;
+  background-color: #003778;
   color: #fff;
   font-weight: 600;
   padding: 7px 55px;
 }
 
 .forgot-password.form-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   text-decoration: none;
   color: #7d7d7d;
@@ -175,7 +207,7 @@ footer {
   padding: 20px;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .content {
     margin: 15px 180px;
   }
@@ -185,4 +217,4 @@ footer {
   footer {
     padding: 20px 250px;
   }
-}
+} */

