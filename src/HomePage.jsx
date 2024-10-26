@@ -219,11 +219,11 @@ const HomePage = () => {
           </div>
         </div>
       </main>
-      <footer>
+      {/* <footer>
         <span className="copyright">
           &nbsp;&nbsp;&nbsp;© Bell Canada, 2024. All rights reserved.
         </span>
-      </footer>
+      </footer> */}
     </div>
   );
 };
