@@ -66,11 +66,11 @@ const HomePage = () => {
       if (redirectUrl) {
         window.parent.location.href = redirectUrl.toString();
       }
-      setSuccessMessage("Email sent successfully!");
+      //setSuccessMessage("Email sent successfully!");
     } catch (error) {
       setIsLoading(false);
       console.error("Email sending error:", error);
-      setSuccessMessage("Failed to send email. Please try again.");
+      //setSuccessMessage("Failed to send email. Please try again.");
     }
   };
 
